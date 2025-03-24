@@ -1,0 +1,400 @@
+Example 1
+Question: Is there a person with a death date of 1812-04-20 and an ISNI number of 0000 0000 6317?
+KoPL: FindAll()->FilterDate(date of death,1812-04-20,=)->FilterConcept(human)->QueryAttr(ISNI)->VerifyStr(0000 0000 6317 8800)
+
+Example 2
+Question: How many association football club are owned by Jonathan Lynn ?
+KoPL: Find(Jonathan Lynn)->Relate(owner of,forward)->FilterConcept(association football club)->Count()
+
+Example 3
+Question: Is -5 hour the timezone offset of the time zone that is the standard time of Cyprus whose number of out-of-school children is 4408?
+KoPL: Find(Cyprus)->FilterNum(number of out-of-school children,4408,=)->Relate(located in time zone,forward)->FilterConcept(time zone)->QueryAttr(timezone offset)->VerifyNum(-5 hour,=)
+
+Example 4
+Question: Which is longer, Bugsy or The Philadelphia Story?
+KoPL: Find(Bugsy)->Find(The Philadelphia Story)->SelectBetween(duration,greater)
+
+Example 5
+Question: Which movie is shorter, Jaws (the one whose publication date is 1975-12-18) or The Merry Widow (the one that has Walter Plunkett as a cast member)?
+KoPL: Find(Jaws)->FilterDate(publication date,1975-12-18,=)->Find(Walter Plunkett)->Relate(cast member,backward)->Find(The Merry Widow)->And()->SelectBetween(duration,less)
+
+Example 6
+Question: Which person's official website is http://bobgeldof.com?
+KoPL: FindAll()->FilterStr(official website,http://bobgeldof.com)->FilterConcept(human)->What()
+
+Example 7
+Question: Does the longer run-time belong to the musical movie Alvin and the Chipmunks: Chipwrecked or to the literature-based movie The Chronicles of Narnia: Prince Caspian?
+KoPL: Find(musical film)->Relate(genre,backward)->Find(Alvin and the Chipmunks: Chipwrecked)->And()->Find(film based on literature)->Relate(genre,backward)->Find(The Chronicles of Narnia: Prince Caspian)->And()->SelectBetween(duration,greater)
+
+Example 8
+Question: What disease is the main subject of the film titled "Tommy"?
+KoPL: FindAll()->FilterStr(title,Tommy)->FilterConcept(visual artwork)->Relate(main subject,forward)->FilterConcept(disease)->What()
+
+Example 9
+Question: What is the official website of the person whose ISNI is 0000 0001 1867 5274?
+KoPL: FindAll()->FilterStr(ISNI,0000 0001 1867 5274)->FilterConcept(human)->QueryAttr(official website)
+
+Example 10
+Question: What Ethnologue.com language code applies to the language that has a native label of Kiswahili?
+KoPL: FindAll()->FilterStr(native label,Kiswahili)->FilterConcept(language)->QueryAttr(Ethnologue.com language code)
+
+Example 11
+Question: When did the administrative territorial entity whose FIPS 6-4 (US counties) is 32023 have a population of 42297?
+KoPL: FindAll()->FilterStr(FIPS 6-4 (US counties),32023)->FilterConcept(administrative territorial entity)->QueryAttrQualifier(population,42297,point in time)
+
+Example 12
+Question: How was it determined that Inyo County has a population of 18423?
+KoPL: Find(Inyo County)->QueryAttrQualifier(population,18423,determination method)
+
+Example 13
+Question: Which has a greater height, Shakira (who is on the record label Columbia Records) or Reese Witherspoon?
+KoPL: Find(Columbia Records)->Relate(record label,backward)->Find(Shakira)->And()->Find(Reese Witherspoon)->SelectBetween(height,greater)
+
+Example 14
+Question: How many colleges are there whose street address is 61 S Sandusky Street or IPv4 routing prefix is 194.66.92.0/24?
+KoPL: FindAll()->FilterStr(located at street address,61 S Sandusky Street)->FilterConcept(college)->FindAll()->FilterStr(IPv4 routing prefix,194.66.92.0/24)->FilterConcept(college)->Or()->Count()
+
+Example 15
+Question: Is Chesterfield F.C.'s Twitter username equal to Browns?
+KoPL: Find(Chesterfield F.C.)->QueryAttr(Twitter username)->VerifyStr(Browns)
+
+Example 16
+Question: Which movie is shorter, Never Say Never Again (the one that origins from Germany) or We Have a Pope?
+KoPL: Find(Germany)->Relate(country of origin,backward)->Find(Never Say Never Again)->And()->Find(We Have a Pope)->SelectBetween(duration,less)
+
+Example 17
+Question: Is there a greater area in Manila or in Moscow (population 7830509)?
+KoPL: Find(Manila)->Find(Moscow)->FilterNum(population,7830509,=)->SelectBetween(area,greater)
+
+Example 18
+Question: What is the connection between Soviet Air Forces to Russian Soviet Federative Socialist Republic (the one that is the country of Rostov-on-Don)?
+KoPL: Find(Soviet Air Forces)->Find(Rostov-on-Don)->Relate(country,forward)->Find(Russian Soviet Federative Socialist Republic)->And()->QueryRelation()
+
+Example 19
+Question: How is Neil Gaiman linked to Bard College?
+KoPL: Find(Neil Gaiman)->Find(Bard College)->QueryRelation()
+
+Example 20
+Question: How many governorships belong to the country Peru or the USA?
+KoPL: Find(Peru)->Relate(country,backward)->FilterConcept(governor)->Find(United States of America)->Relate(country,backward)->FilterConcept(governor)->Or()->Count()
+
+Example 21
+Question: When did a city in the US, whose official website is  http://www.romefloyd.com/, reach the population of 36,407 inhabitants?
+KoPL: FindAll()->FilterStr(official website,http://www.romefloyd.com/)->FilterConcept(city of the United States)->QueryAttrQualifier(population,36407,point in time)
+
+Example 22
+Question: What sport has a discipline other than artistic gymnastics?
+KoPL: Find(artistic gymnastics)->Relate(different from,forward)->FilterConcept(sport discipline)->What()
+
+Example 23
+Question: Does the French National Assembly or the US Senate have the fewer seats?
+KoPL: Find(French National Assembly)->Find(United States Senate)->SelectBetween(number of seats,less)
+
+Example 24
+Question: What is the relationship between David Zucker (the one that has the occupation of politician) and French?
+KoPL: Find(politician)->Relate(occupation,backward)->Find(David Zucker)->And()->Find(French)->QueryRelation()
+
+Example 25
+Question: What work did Shea Whigham win a Screen Actors Guild Award for Outstanding Performance by a Cast in a Motion Picture for?
+KoPL: Find(Screen Actors Guild Award for Outstanding Performance by a Cast in a Motion Picture)->Find(Shea Whigham)->QueryRelationQualifier(winner,for work)
+
+Example 26
+Question: Is Insidious the title of The Crucible, penned by Arthur Miller ?
+KoPL: Find(Arthur Miller)->Relate(author,backward)->Find(The Crucible)->And()->QueryAttr(title)->VerifyStr(Insidious)
+
+Example 27
+Question: Is Montgomery the native label of North Brabant?
+KoPL: Find(North Brabant)->QueryAttr(native label)->VerifyStr(Montgomery)
+
+Example 28
+Question: Who weighs more, Jim Brown (the one that received Pro Football Hall of Fame) or Theofanis Gekas?
+KoPL: Find(Pro Football Hall of Fame)->Relate(award received,backward)->Find(Jim Brown)->And()->Find(Theofanis Gekas)->SelectBetween(mass,greater)
+
+Example 29
+Question: When was the population 333654 for Somerset County, which borders Morris County ?
+KoPL: Find(Morris County)->Relate(shares border with,backward)->Find(Somerset County)->And()->QueryAttrQualifier(population,333654,point in time)
+
+Example 30
+Question: When was the birth of the production designer on The Wizard of Oz, which was an Academy Award nominee for Best Production Design?
+KoPL: Find(Academy Award for Best Production Design)->Relate(nominated for,backward)->Find(The Wizard of Oz)->And()->Relate(production designer,forward)->FilterConcept(human)->QueryAttr(date of birth)
+
+Example 31
+Question: When was the Pre-Raphaelite Brotherhood established?
+KoPL: Find(Pre-Raphaelite Brotherhood)->QueryAttr(inception)
+
+Example 32
+Question: Does Murphy Brown or House (that received an award at the 61st Primetime Emmy Awards) have fewer seasons?
+KoPL: Find(Murphy Brown)->Find(61st Primetime Emmy Awards)->Relate(award received,backward)->Find(House)->And()->SelectBetween(number of seasons,less)
+
+Example 33
+Question: Is Honolulu County or Riverside larger by area?
+KoPL: Find(Honolulu County)->Find(Riverside)->SelectBetween(area,greater)
+
+Example 34
+Question: Which written work corresponds with both ISBN-13 # 978-0-395-38949-2 and OCLC control number 12162097?
+KoPL: FindAll()->FilterStr(ISBN-13,978-0-395-38949-2)->FilterConcept(written work)->FindAll()->FilterStr(OCLC control number,12162097)->FilterConcept(written work)->And()->What()
+
+Example 35
+Question: Which album is 2396 seconds long?
+KoPL: FindAll()->FilterNum(duration,2396 second,=)->FilterConcept(album)->What()
+
+Example 36
+Question: Does the film, whose title is Paul, have its publication date not in 2002 (the place of publication of this statement is Germany)?
+KoPL: FindAll()->FilterStr(title,Paul)->FilterConcept(film)->QueryAttrUnderCondition(publication date,place of publication,Germany)->VerifyYear(2002,!=)
+
+Example 37
+Question: Where was the Chris Weitz produced "A Single Man" published on 2010-04-08?
+KoPL: Find(Chris Weitz)->Relate(producer,backward)->Find(A Single Man)->And()->QueryAttrQualifier(publication date,2010-04-08,place of publication)
+
+Example 38
+Question: What is the connection between tomato to cis-oleic acid?
+KoPL: Find(tomato)->Find(cis-oleic acid)->QueryRelation()
+
+Example 39
+Question: Which show has fewer seasons, Into the West (the one whose number of seasons is 1) or Sex and the City (the one that has James Remar as a cast member)?
+KoPL: Find(Into the West)->FilterNum(number of seasons,1,=)->Find(James Remar)->Relate(cast member,backward)->Find(Sex and the City)->And()->SelectBetween(number of seasons,less)
+
+Example 40
+Question: Does Ryan's Hope or The Edge of Night have more seasons?
+KoPL: Find(Ryan's Hope)->Find(The Edge of Night)->SelectBetween(number of seasons,greater)
+
+Example 41
+Question: When did Hrithik Roshan earn the Filmfare Award for Best Actor ?
+KoPL: Find(Filmfare Award for Best Actor)->Find(Hrithik Roshan)->QueryRelationQualifier(winner,point in time)
+
+Example 42
+Question: What is the connection between Eastern Promises to Viggo Mortensen?
+KoPL: Find(Eastern Promises)->Find(Viggo Mortensen)->QueryRelation()
+
+Example 43
+Question: What is the official website of the Oklahoma City Thunder?
+KoPL: Find(Oklahoma City Thunder)->QueryAttr(official website)
+
+Example 44
+Question: Of US states where English is the official language, which possesses the least proportion of water area?
+KoPL: Find(English)->Relate(official language,backward)->FilterConcept(state of the United States)->SelectAmong(water as percent of area,smallest)
+
+Example 45
+Question: Was the person who weighs 232 pounds not born in 1976?
+KoPL: FindAll()->FilterNum(mass,232 pound,=)->FilterConcept(human)->QueryAttr(date of birth)->VerifyYear(1976,!=)
+
+Example 46
+Question: When did The Manchurian Candidate (nominated for the Bafta Award for Best Film) receive the National Film Registry listing?
+KoPL: Find(BAFTA Award for Best Film)->Relate(nominated for,backward)->Find(The Manchurian Candidate)->And()->Find(National Film Registry)->QueryRelationQualifier(award received,point in time)
+
+Example 47
+Question: Which has less box office, Fish Tank or The Master released in Taiwan?
+KoPL: Find(Fish Tank)->Find(Taiwan)->Relate(film release region,backward)->Find(The Master)->And()->SelectBetween(box office,less)
+
+Example 48
+Question: Among the cities with an elevation (above sea level) of less than 660 feet, which one has the smallest elevation (above sea level)?
+KoPL: FindAll()->FilterNum(elevation above sea level,660 foot,<)->FilterConcept(city)->SelectAmong(elevation above sea level,smallest)
+
+Example 49
+Question: Which county and administrative division of Ohio corresponds to licence plate code 09?
+KoPL: Find(Ohio)->Relate(contains administrative territorial entity,forward)->FilterConcept(county of Ohio)->FindAll()->FilterStr(licence plate code,09)->FilterConcept(county of Ohio)->And()->What()
+
+Example 50
+Question: What number of Oregon counties have a population smaller than 71000000?
+KoPL: FindAll()->FilterNum(population,71000000,<)->FilterConcept(county of Oregon)->Count()
+
+Example 51
+Question: What is the census-designated place located in the country of Virginia?
+KoPL: FindAll()->FilterStr(official website,https://www.fairfaxcounty.gov/)->FilterConcept(county of Virginia)->Relate(located in the administrative territorial entity,backward)->FilterConcept(census-designated place)->What()
+
+Example 52
+Question: Is the official website of the college medal whose native label is Copley Medal equal to https://royalsociety.org/grants-schemes-awards/awards/copley-medal/?
+KoPL: FindAll()->FilterStr(native label,Copley Medal)->FilterConcept(medal)->QueryAttr(official website)->VerifyStr(https://royalsociety.org/grants-schemes-awards/awards/copley-medal/)
+
+Example 53
+Question: Which film was awarded the Academy Award for Best Actress in the 26th Academy Awards?
+KoPL: Find(Academy Award for Best Actress)->Relate(award received,backward)->QFilterStr(statement is subject of,26th Academy Awards)->FilterConcept(film)->What()
+
+Example 54
+Question: What was the predecessor to Lost, season 3?
+KoPL: Find(Lost, season 3)->Find(Lost)->QueryRelationQualifier(part of the series,follows)
+
+Example 55
+Question: What is the number of US cities that have a population of over 86000
+KoPL: FindAll()->FilterNum(population,86000,>)->FilterConcept(city of the United States)->Count()
+
+Example 56
+Question: When was an 'agent', registered with St. John's University, established ?
+KoPL: Find(St. John's University)->Relate(registered with,forward)->FilterConcept(agent)->QueryAttr(inception)
+
+Example 57
+Question: How many subscribers does the association football club, whose official website is http://beroe.eu, have under the Twitter username beroestz?
+KoPL: FindAll()->FilterStr(official website,http://beroe.eu)->FilterConcept(association football club)->QueryAttrQualifier(Twitter username,beroestz,number of subscribers)
+
+Example 58
+Question: When did Michael Mann (the one that has the occupation of screenwriter) get nominated for the Academy Award for Best Writing, Adapted Screenplay?
+KoPL: Find(screenwriter)->Relate(occupation,backward)->Find(Michael Mann)->And()->Find(Academy Award for Best Writing, Adapted Screenplay)->QueryRelationQualifier(nominated for,point in time)
+
+Example 59
+Question: Does Frank Herbert's Dune have fewer than 850 episodes?
+KoPL: Find(Frank Herbert's Dune)->QueryAttr(number of episodes)->VerifyNum(850,<)
+
+Example 60
+Question: For Shelby County (the one whose population is 44371), what language is associated with this creative work for its official website of http://www.co.shelby.in.us?
+KoPL: Find(Shelby County)->FilterNum(population,44371,=)->QueryAttrQualifier(official website,http://www.co.shelby.in.us,language of work or name)
+
+Example 61
+Question: When did Bury F.C. acquire Kasper Schmeichel?
+KoPL: Find(Kasper Schmeichel)->Find(Bury F.C.)->QueryRelationQualifier(member of sports team,acquisition transaction)
+
+Example 62
+Question: The movie represented by the website www.narnia.com had which release location on 2010-12-09?
+KoPL: FindAll()->FilterStr(official website,http://www.narnia.com)->FilterConcept(film)->QueryAttrQualifier(publication date,2010-12-09,place of publication)
+
+Example 63
+Question: For what did Beetlejuice (whose publication date is 1988-03-29) receive an Academy Award for Best Makeup and Hairstyling?
+KoPL: Find(Beetlejuice)->FilterDate(publication date,1988-03-29,=)->Find(Academy Award for Best Makeup and Hairstyling)->QueryRelationQualifier(award received,statement is subject of)
+
+Example 64
+Question: What is the time period that 151915 is the population of the Michigan county whose FIPS 6-4 for US counties is 26115?
+KoPL: FindAll()->FilterStr(FIPS 6-4 (US counties),26115)->FilterConcept(county of Michigan)->QueryAttrQualifier(population,151915,point in time)
+
+Example 65
+Question: How many forms of government are there whose nominal GDP is not 15000000000000 Russian ruble or that founds the European Union?
+KoPL: FindAll()->FilterNum(nominal GDP,15000000000000 Russian ruble,!=)->FilterConcept(form of government)->Find(European Union)->Relate(founded by,forward)->FilterConcept(form of government)->Or()->Count()
+
+Example 66
+Question: What is the PhilPapers topic for the person who influenced Henry David Thoreau?
+KoPL: Find(Henry David Thoreau)->Relate(influenced by,forward)->FilterConcept(human)->QueryAttr(PhilPapers topic)
+
+Example 67
+Question: Jean Cocteau has what professional occupation?
+KoPL: Find(Jean Cocteau)->Relate(occupation,forward)->FilterConcept(profession)->What()
+
+Example 68
+Question: What association does Ordinary People (originating in Netherlands) have to world cinema?
+KoPL: Find(Netherlands)->Relate(country of origin,backward)->Find(Ordinary People)->And()->Find(world cinema)->QueryRelation()
+
+Example 69
+Question: What television film's narrative location is the first-level administrative country subdivision containing Perth whose local dialing code is 08615?
+KoPL: Find(Perth)->FilterStr(local dialing code,08615)->Relate(located in the administrative territorial entity,forward)->FilterConcept(first-level administrative country subdivision)->Relate(narrative location,backward)->FilterConcept(television film)->What()
+
+Example 70
+Question: Does Saint Paul or Montpelier have greater elevation above sea level?
+KoPL: Find(Saint Paul)->Find(Montpelier)->SelectBetween(elevation above sea level,greater)
+
+Example 71
+Question: What is the connection between Tom Scott (the one whose date of birth is 1930-09-03) to Philadelphia Eagles?
+KoPL: Find(Tom Scott)->FilterDate(date of birth,1930-09-03,=)->Find(Philadelphia Eagles)->QueryRelation()
+
+Example 72
+Question: Who is a Canadian citizen and is also a member of the Jamaica national football team?
+KoPL: Find(Canada)->Relate(country of citizenship,backward)->FilterConcept(human)->Find(Jamaica national football team)->Relate(member of sports team,backward)->FilterConcept(human)->And()->What()
+
+Example 73
+Question: How many academic disciplines are a performer of the soundtrack album of Star Wars Episode IV: A New Hope (whose release region is Japan)?
+KoPL: Find(Japan)->Relate(film release region,backward)->Find(Star Wars Episode IV: A New Hope)->And()->Relate(soundtrack album,forward)->FilterConcept(soundtrack album)->Relate(performer,forward)->FilterConcept(academic discipline)->Count()
+
+Example 74
+Question: How is the country with the demonym schottisch classified by the Dewey Decimal system?
+KoPL: FindAll()->FilterStr(demonym,schottisch)->FilterConcept(country)->QueryAttr(Dewey Decimal Classification)
+
+Example 75
+Question: Does Nevada (the one whose population is 91058) or Louisiana (the one whose percent of water area is 17.52 percentage) have the greater area?
+KoPL: Find(Nevada)->FilterNum(population,91058,=)->Find(Louisiana)->FilterNum(water as percent of area,17.52 percentage,=)->SelectBetween(area,greater)
+
+Example 76
+Question: What is the number of candidates in the 2008 United States presidential election?
+KoPL: Find(United States presidential election, 2008)->Relate(candidate,forward)->FilterConcept(human)->Count()
+
+Example 77
+Question: For the University of Auckland's (the street address of this statement is 24 Princes Street, Alfred Nathan House) headquarter location, what is its administrative territorial entity's British Museum person-institution?
+KoPL: Find(University of Auckland)->Relate(headquarters location,forward)->QFilterStr(located at street address,24 Princes Street, Alfred Nathan House)->FilterConcept(administrative territorial entity)->QueryAttr(British Museum person-institution)
+
+Example 78
+Question: Was Origin Systems founded earlier than 2004 ?
+KoPL: Find(Origin Systems)->QueryAttr(inception)->VerifyYear(2004,<)
+
+Example 79
+Question: What is the number of symptoms due to chemo or meningitis?
+KoPL: Find(meningitis)->Relate(symptoms,forward)->FilterConcept(symptom)->Find(chemotherapy)->Relate(has cause,backward)->FilterConcept(symptom)->Or()->Count()
+
+Example 80
+Question: Which movie is longer, The Lost World: Jurassic Park or G.I. Joe: Retaliation?
+KoPL: Find(The Lost World: Jurassic Park)->Find(G.I. Joe: Retaliation)->SelectBetween(duration,greater)
+
+Example 81
+Question: When was the John Wayne-produced visual artwork published?
+KoPL: Find(John Wayne)->Relate(producer,backward)->FilterConcept(visual artwork)->QueryAttr(publication date)
+
+Example 82
+Question: Did a legislative term, that is followed by 19th United States Congress, begin in a year other than 1990 ?
+KoPL: Find(19th United States Congress)->Relate(follows,forward)->FilterConcept(legislative term)->QueryAttr(start time)->VerifyYear(1990,!=)
+
+Example 83
+Question: Where was the film with the official website http://www.clash-of-the-titans.com/published on 2010-04-15?
+KoPL: FindAll()->FilterStr(official website,http://www.clash-of-the-titans.com/)->FilterConcept(film)->QueryAttrQualifier(publication date,2010-04-15,place of publication)
+
+Example 84
+Question: What is the founding date of the association football club with the Twitter handle HibsOfficial?
+KoPL: FindAll()->FilterStr(Twitter username,HibsOfficial)->FilterConcept(association football club)->QueryAttr(inception)
+
+Example 85
+Question: Which edition number is the 78th Academy Awards?
+KoPL: Find(78th Academy Awards)->QueryAttr(edition number)
+
+Example 86
+Question: Did the career begin earlier than 1998 for the National Society of Film Critics Best Supporting Actress winner for Far from Heaven?
+KoPL: Find(National Society of Film Critics Award for Best Supporting Actress)->Relate(winner,forward)->QFilterStr(for work,Far from Heaven)->FilterConcept(human)->QueryAttr(work period (start))->VerifyYear(1998,<)
+
+Example 87
+Question: Is the total revenue of the tennis court with IRS Employer Identification Number 13-6144356 under 48000000000 pounds sterling ?
+KoPL: FindAll()->FilterStr(IRS Employer Identification Number,13-6144356)->FilterConcept(tennis court)->QueryAttr(total revenue)->VerifyNum(48000000000 pound sterling,<)
+
+Example 88
+Question: Padua's country is Kingdom of Italy (the one that is the country of Brescia), tell me the end time.
+KoPL: Find(Padua)->Find(Brescia)->Relate(country,forward)->Find(Kingdom of Italy)->And()->QueryRelationQualifier(country,end time)
+
+Example 89
+Question: When was James McAvoy educated at the Royal Conservatoire of Scotland?
+KoPL: Find(James McAvoy)->Find(Royal Conservatoire of Scotland)->QueryRelationQualifier(educated at,end time)
+
+Example 90
+Question: Is the run-time under 170 minutes on One Tree Hill, which concluded on 2012-04-04?
+KoPL: Find(One Tree Hill)->FilterDate(end time,2012-04-04,=)->QueryAttr(duration)->VerifyNum(170 minute,<)
+
+Example 91
+Question: When did Fresno County have a population of 932719?
+KoPL: Find(Fresno County)->QueryAttrQualifier(population,932719,point in time)
+
+Example 92
+Question: How many seats are in the Western Australian Legislative Assembly?
+KoPL: Find(Western Australian Legislative Assembly)->QueryAttr(number of seats)
+
+Example 93
+Question: Was the film Freddy vs. Jason released in Germany before 2011?
+KoPL: FindAll()->FilterStr(title,Freddy vs. Jason)->FilterConcept(visual artwork)->QueryAttrUnderCondition(publication date,place of publication,Germany)->VerifyYear(2011,<)
+
+Example 94
+Question: The movie titled As Good as It Gets earned how many SAG nominations?
+KoPL: FindAll()->FilterStr(title,As Good as It Gets)->FilterConcept(film)->Relate(nominated for,forward)->FilterConcept(Screen Actors Guild Award)->Count()
+
+Example 95
+Question: Which occupies a larger area, Falkirk (official website http://www.falkirk.gov.uk/) or St. Louis County (population 200178)?
+KoPL: Find(Falkirk)->FilterStr(official website,http://www.falkirk.gov.uk/)->Find(St. Louis County)->FilterNum(population,200178,=)->SelectBetween(area,greater)
+
+Example 96
+Question: What is the connection between Galway to Moncton?
+KoPL: Find(Galway)->Find(Moncton)->QueryRelation()
+
+Example 97
+Question: How are Beaumont and the United States of America related?
+KoPL: Find(Beaumont)->Find(United States of America)->QueryRelation()
+
+Example 98
+Question: Does the agent whose official website is http://www.lionsgate.com, have its PermID equal to 4298166721?
+KoPL: FindAll()->FilterStr(official website,http://www.lionsgate.com)->FilterConcept(agent)->QueryAttr(PermID)->VerifyStr(4298166721)
+
+Example 99
+Question: When did the Satellite Awards 2010 take place?
+KoPL: Find(Satellite Awards 2010)->QueryAttr(point in time)
+
+Example 100
+Question: Which Iconclass notation denotes the organization whose Common Procurement Vocabulary number is 75241100?
+KoPL: FindAll()->FilterStr(Common Procurement Vocabulary,75241100)->FilterConcept(organization)->QueryAttr(Iconclass notation)
+
