@@ -47,7 +47,7 @@ FSR-KBQA/
 ```
 
 ## Preprocessing
----
+
 ### Random sampling
 
 To obtain examples for few-shot learning, we randomly sampled 100 question-KoPL pairs from trainset of [KQA Pro](https://github.com/shijx12/KQAPro_Baselines).
@@ -67,7 +67,6 @@ python LLM_KoPL_Gen.py
 ```
 
 ## Inference
----
 
 To execute inference, run the following command:
 
@@ -96,7 +95,6 @@ python -m src.run_grailqa \
 ```
 
 ## Evaluation
----
 
 As for evaluating the generative answers, we used [extend EM](https://github.com/tan92hl/Complex-Question-Answering-Evaluation-of-GPT-family). Just run command below to get the result:
 **(You can modify the path in the code as required)**
