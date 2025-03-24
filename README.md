@@ -86,7 +86,7 @@ python -m src.run_kqapro \
 - GrailQA
 ```
 python -m src.run_grailqa \
---input_dir data/GrailQA/GarilQA_all_llmkopl_knowledge.json \# path to preprocessed data
+--input_dir data/GrailQA/GarilQA_all_llmkopl_knowledge.json \ # path to preprocessed data
 --output_dir outputs/GrailQA \ # path for saving result
 --log_dir logs/GrailQA \ # path for saving logs
 --llm_name llama3.1:70b-instruct-q4_K_M \ # name for ollama model
