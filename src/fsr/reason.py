@@ -1,6 +1,5 @@
-import re
 from .ollama_api import generate_text
-from .retrieve_knowledge import retrieve_kb_bm25, retrieve_llm
+# from .retrieve_knowledge import retrieve_kb_bm25, retrieve_llm
 
 
 KOPL_FUNCTIONS = {
