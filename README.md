@@ -85,6 +85,8 @@ python -m src.run_kqapro \
 
 - GrailQA
 ```
+cd FSR-KBQA/
+
 python -m src.run_grailqa \
 --input_dir data/GrailQA/GarilQA_all_llmkopl_knowledge.json \ # path to preprocessed data
 --output_dir outputs/GrailQA \ # path for saving result
