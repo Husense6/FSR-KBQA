@@ -1,7 +1,8 @@
 import json
 from tqdm import tqdm
 import re
-
+from .reason import KOPL_FUNCTIONS
+from .ollama_api import generate_text
 
 
 kopl_few_shot_template = """Instruction:
