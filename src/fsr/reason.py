@@ -138,7 +138,7 @@ def llm_reason(question: str, kopl: str, llm_name: str, reason_flag: str, knowle
     kopl_str = kopl
     knowledge_kb = "\n".join(knowledges)
     
-    kopl_descriptions = add_kopl_description(kopl)
+    kopl_descriptions = add_kopl_description(kopl_str)
 
     if reason_flag == 'rag':
         template = rag_template.format(
@@ -148,14 +148,14 @@ def llm_reason(question: str, kopl: str, llm_name: str, reason_flag: str, knowle
     elif reason_flag == 'iag':
         template = iag_template.format(
             question=question,
-            kopl=kopl,
+            kopl=kopl_str,
             kopl_description=kopl_descriptions,
             kb_knowledge=knowledge_kb
         )
     elif reason_flag == 'cot':
         template = cot_template.format(
             question=question,
-            kopl=kopl,
+            kopl=kopl_str,
             kopl_description=kopl_descriptions
         )
         
@@ -172,7 +172,7 @@ def llm_reason_grailqa(question: str, kopl: str, llm_name: str, reason_flag: str
     kopl_str = kopl
     knowledge_kb = "\n".join(knowledges)
 
-    kopl_descriptions = add_kopl_description(kopl)
+    kopl_descriptions = add_kopl_description(kopl_str)
 
     if reason_flag == 'rag':
         template = rag_template.format(
