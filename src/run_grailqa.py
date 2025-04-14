@@ -59,12 +59,13 @@ def run_reason(args):
         output_json.append(json_i)
 
         if (index + 1) % 200 == 0:
-            temp_json_file = open(os.path.join(args.output_dir, f"{args.llm_name}_{args.reason_flag}_temp2.json"), 'w', encoding='utf-8')
+            temp_json_file = open(os.path.join(args.output_dir, f"{args.llm_name}_{args.reason_flag}_temp.json"), 'w', encoding='utf-8')
             json.dump(output_json, temp_json_file, indent=4)
             temp_json_file.close()
             logging.info(f"{index+1} temporary items have been saved")
 
     json.dump(output_json, output_json_file, indent=4)
+    output_json_file.close()
     time.sleep(2)
     print("Done!")
 
