@@ -1,4 +1,5 @@
 import json
+import re
 
 
 def extract_largest_json(text):
@@ -61,13 +62,13 @@ def extract_answer_str(response_text):
     return "No answer found."
 
 
-if __name__ == "__main__":
-    with open('outputs/KQAPro/val_all/llama3.1:8b-instruct-q4_K_M_iag.json', 'r') as f:
-        data = json.load(f)
-        for item in tqdm(data):
-            answer = extract_answer(item['inference'])
-            item['extracted_answer'] = answer
+# if __name__ == "__main__":
+#     with open('outputs/KQAPro/val_all/llama3.1:8b-instruct-q4_K_M_iag.json', 'r') as f:
+#         data = json.load(f)
+#         for item in tqdm(data):
+#             answer = extract_answer(item['inference'])
+#             item['extracted_answer'] = answer
     
-    with open('outputs/KQAPro/val_all/llama3.1:8b-instruct-q4_K_M_iag_e.json', 'w') as f:
-        json.dump(data, f, indent=4)
+#     with open('outputs/KQAPro/val_all/llama3.1:8b-instruct-q4_K_M_iag_e.json', 'w') as f:
+#         json.dump(data, f, indent=4)
         
