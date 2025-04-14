@@ -125,10 +125,6 @@ Step 1: [Provide Sub-question.]
 Assistant:
 """
 
-'''
-- The provided KoPL Answer is the result of precisely executing KoPL on Knowledge base but not the standard answer.
-- Combine the answers to the sub-questions and provided <KoPL Answer> to answer the question finally.'''
-
 
 def add_kopl_description(kopl:str):
     kopl_descriptions = []
