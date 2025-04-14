@@ -76,7 +76,7 @@ rag_template = """Human:
 <Question>:
 {question}
 <KB Knowledge>:
-{knowledge_kb}
+{kb_knowledge}
 
 Guidelines for response:
 - You are an expert assistant specializing in knowledge question answering. Please answer the <Question> based on the given <KB Knowledge>.
@@ -136,21 +136,21 @@ def add_kopl_description(kopl:str):
 
 def llm_reason(question: str, kopl: str, llm_name: str, reason_flag: str, knowledges: list) -> str:
     kopl_str = kopl
-    knowledge_kb = "\n".join(knowledges)
+    kb_knowledge = "\n".join(knowledges)
     
     kopl_descriptions = add_kopl_description(kopl_str)
 
     if reason_flag == 'rag':
         template = rag_template.format(
         question=question,
-        knowledge_kb=knowledge_kb
+        kb_knowledge=kb_knowledge
     )
     elif reason_flag == 'iag':
         template = iag_template.format(
             question=question,
             kopl=kopl_str,
             kopl_description=kopl_descriptions,
-            kb_knowledge=knowledge_kb
+            kb_knowledge=kb_knowledge
         )
     elif reason_flag == 'cot':
         template = cot_template.format(
@@ -170,21 +170,21 @@ def llm_reason(question: str, kopl: str, llm_name: str, reason_flag: str, knowle
 
 def llm_reason_grailqa(question: str, kopl: str, llm_name: str, reason_flag: str, knowledges: list) -> str:
     kopl_str = kopl
-    knowledge_kb = "\n".join(knowledges)
+    kb_knowledge = "\n".join(knowledges)
 
     kopl_descriptions = add_kopl_description(kopl_str)
 
     if reason_flag == 'rag':
         template = rag_template.format(
         question=question,
-        knowledge_kb=knowledge_kb
+        kb_knowledge=kb_knowledge
     )
     elif reason_flag == 'iag':
         template = iag_template.format(
             question=question,
             kopl=kopl_str,
             kopl_description=kopl_descriptions,
-            kb_knowledge=knowledge_kb
+            kb_knowledge=kb_knowledge
         )
     elif reason_flag == 'cot':
         template = cot_template.format(
