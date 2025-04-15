@@ -103,18 +103,18 @@ As for evaluating the generative answers, we used [extend EM](https://github.com
 
 - KQA Pro
 ```
-cd FSR-KBQA/src/evaluate/
-python eval_KQAPro.py
+cd FSR-KBQA/
+python -m src.evaluate.eval_KQAPro
 ```
 
 - KQA Pro(ChatGPT)
 ```
-cd FSR-KBQA/src/evaluate/
-python eval_KQAPro_chatgpt.py
+cd FSR-KBQA/
+python -m src.evaluate.eval_KQAPro_chatgpt
 ```
 
 - GrailQA
 ```
-cd FSR-KBQA/src/evaluate/
-python eval_GrailQA.py
+cd FSR-KBQA/
+python -m src.evaluate.eval_GrailQA
 ```
